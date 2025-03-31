@@ -274,32 +274,41 @@
 
     // Submit comment
     submitCommentButton.addEventListener('click', async () => {
-      if (!userAddress) {
-        alert('Please connect your wallet first!');
-        return;
-      }
-
-      const comment = commentText.value.trim();
-      if (comment.length > 0) {
-        const response = await fetch('http://54.183.66.163:5000/comments', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            userAddress: userAddress,
-            comment: comment
-          })
-        });
-
-        if (response.ok) {
-          loadComments(); // Refresh comments list
-          commentText.value = ''; // Clear input
-        } else {
-          alert('Error submitting comment');
+        if (!userAddress) {
+            alert('Please connect your wallet first!');
+            return;
         }
-      }
+
+        const comment = commentText.value.trim();
+        if (comment.length > 0) {
+            console.log('Submitting comment:', { userAddress, comment });
+
+            try {
+                const response = await fetch('http://localhost:5000/comments', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        userAddress: userAddress,
+                        comment: comment,
+                    }),
+                });
+                console.log('Response from backend:', response);
+
+                if (response.ok) {
+                    loadComments(); // Refresh comments list
+                    commentText.value = ''; // Clear input
+                } else {
+                    alert('Error submitting comment');
+                }
+            } catch (error) {
+                console.log('Error during fetch:', error);
+                alert('Error submitting comment');
+            }
+        }
     });
+
 
     // Load comments when the page loads
     loadComments();
