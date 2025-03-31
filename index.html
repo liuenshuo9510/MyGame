@@ -1,133 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Play Tomb Runner, the exciting online game, directly on tombrunner.fun. Enjoy seamless gameplay across devices.">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://tombrunner.fun">
-    <title>Tomb Runner - Play the Ultimate Adventure Game Online</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <style>
-        body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #121212; /* Dark background */
-            color: #e0e0e0; /* Light text */
-            overflow-x: hidden;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Tomb Runner is an online Web3-inspired game where Web2 users can dive into thrilling adventures and explore blockchain-powered experiences." />
+  <link rel="canonical" href="https://tombrunner.fun" />
+  <title>Tomb Runner | Web3 Adventure Awaits</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Roboto, sans-serif;
+      background-color: #181A20;
+      color: #EAECEF;
+    }
 
-        header {
-            background: linear-gradient(90deg, #003c8f, #006eff); /* Binance-inspired blue gradient */
-            color: #ffffff; /* White text */
-            text-align: center;
-            padding: 50px 20px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Subtle shadow */
-        }
+    header {
+      text-align: center;
+      padding: 80px 20px 60px;
+    }
 
-        header h1 {
-            margin: 0;
-            font-size: 3.5em;
-            font-weight: bold;
-        }
+    header h1 {
+      font-size: 3.2em;
+      font-weight: bold;
+      color: #F0B90B;
+      margin: 0;
+    }
 
-        header p {
-            font-size: 1.2em;
-            margin-top: 10px;
-            font-weight: 400;
-        }
+    header p {
+      font-size: 1.4em;
+      color: #EAECEF;
+      margin-top: 10px;
+    }
 
-        .content {
-            padding: 40px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+    .cta-button {
+      background-color: #F0B90B;
+      color: #181A20;
+      padding: 15px 35px;
+      font-size: 1.1em;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      margin-top: 30px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
 
-        h2 {
-            color: #FFD700; /* Gold text for headings */
-            font-size: 2.5em;
-            margin-top: 40px;
-            font-weight: 600;
-        }
+    .cta-button:hover {
+      background-color: #d9a500;
+    }
 
-        .game-description {
-            font-size: 1.2em;
-            line-height: 1.8;
-            color: #e0e0e0; /* Soft light text */
-            margin-bottom: 30px;
-        }
+    .section {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
 
-        iframe {
-            width: 100%;
-            height: 700px;
-            border: none;
-            border-radius: 8px;
-            background-color: #333;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow effect for iframe */
-        }
+    h2 {
+      color: #F0B90B;
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
 
-        .cta-button {
-            display: inline-block;
-            background: #006eff;
-            color: #fff;
-            padding: 15px 30px;
-            text-decoration: none;
-            font-size: 1.2em;
-            border-radius: 6px;
-            margin-top: 30px;
-            font-weight: bold;
-            transition: background 0.3s ease;
-        }
+    p {
+      line-height: 1.7;
+      font-size: 1.1em;
+      color: #ccc;
+    }
 
-        .cta-button:hover {
-            background: #0053cc; /* Darker blue on hover */
-        }
+    iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
+      border-radius: 10px;
+      background: #111;
+      margin-top: 30px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+    }
 
-        /* Mobile responsiveness */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2.5em;
-            }
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.2em;
+      }
 
-            .content {
-                padding: 15px;
-            }
+      .cta-button {
+        padding: 12px 24px;
+        font-size: 1em;
+      }
 
-            iframe {
-                height: 400px;
-            }
-
-            .cta-button {
-                padding: 12px 20px;
-                font-size: 1.1em;
-            }
-        }
-
-    </style>
+      iframe {
+        height: 400px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Tomb Runner</h1>
-        <p>Embark on an unforgettable adventure in this action-packed online game!</p>
-    </header>
+  <!-- Hero -->
+  <header>
+    <h1>Millions of Web2 Users</h1>
+    <p>are discovering Web3 through Tomb Runner</p>
+    <a href="#play">
+      <button class="cta-button">Play Now</button>
+    </a>
+  </header>
 
-    <div class="content">
-        <h2>Game Overview</h2>
-        <p class="game-description">Tomb Runner is an exciting online game where you guide your character through an ancient tomb, avoiding traps, collecting treasures, and racing against time. It's a thrilling journey full of action, adventure, and mystery. Challenge your reflexes and strategic thinking as you advance through increasingly difficult levels.</p>
+  <!-- Game Overview -->
+  <div class="section">
+    <h2>Game Overview</h2>
+    <p>
+      Tomb Runner is an exciting online game where you guide your character through ancient ruins, dodge deadly traps, and collect treasures. Fast-paced and fun, it's the perfect casual game for all ages—with a twist of Web3.
+    </p>
+  </div>
 
-        <h2>Our Vision: Bridging Web2 to Web3</h2>
-        <p class="game-description">Tomb Runner is more than just a game. Our mission is to bring more Web2 users into the world of Web3. Through immersive gameplay and blockchain integration, we aim to show players the possibilities of decentralized technology, enabling them to experience the benefits of Web3 in a fun and engaging way. Join us on this journey and explore the future of the internet!</p>
+  <!-- Vision Section -->
+  <div class="section">
+    <h2>Our Vision: Bridging Web2 to Web3</h2>
+    <p>
+      Tomb Runner is more than just a game—it's a gateway. We aim to onboard millions of Web2 players into the Web3 ecosystem through fun, familiar experiences. By embedding blockchain mechanics into traditional gameplay, we create a seamless transition into the decentralized world.
+    </p>
+  </div>
 
-        <h2>Play Tomb Runner Now!</h2>
-        <p class="game-description">Experience the thrill of Tomb Runner directly in your browser. No downloads required, just click play and jump into the action!</p>
+  <!-- Game Embed -->
+  <div class="section" id="play">
+    <h2>Play Tomb Runner</h2>
+    <p>
+      Jump right into the action—no install needed. Your adventure begins now.
+    </p>
+    <iframe src="https://u4i856.online" title="Tomb Runner Game"></iframe>
+  </div>
 
-        <a href="https://u4i856.online" class="cta-button">Play Now</a>
-
-        <iframe src="https://u4i856.online" title="Tomb Runner Game"></iframe>
-
-        <h2>Why Play Tomb Runner?</h2>
-        <p class="game-description">This game offers fast-paced gameplay with stunning visuals, a variety of obstacles, and an engaging storyline. Perfect for players of all ages looking for a fun and challenging online game experience. Plus, it's accessible from any device, so you can play it anywhere, anytime!</p>
-    </div>
+  <!-- Why Play -->
+  <div class="section">
+    <h2>Why Play Tomb Runner?</h2>
+    <p>
+      • Accessible from any browser, any device<br />
+      • Fast-paced gameplay with Web3 integration<br />
+      • No wallet or crypto knowledge needed to start<br />
+      • A thrilling escape from boring afternoons
+    </p>
+  </div>
 </body>
 </html>
