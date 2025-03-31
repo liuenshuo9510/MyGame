@@ -200,7 +200,7 @@
     <p>
       Jump right into the action—no install needed. Your adventure begins now.
     </p>
-    <iframe src="https://u4i856.online" title="Tomb Runner Game"></iframe>
+    <iframe src="http://54.183.66.163:5000" title="Tomb Runner Game"></iframe>
   </div>
 
   <!-- Why Play -->
@@ -257,8 +257,23 @@
       walletStatus.style.color = 'red';
     }
 
+    // Fetch and display comments
+    async function loadComments() {
+      const response = await fetch('http://54.183.66.163:5000/comments');
+      const comments = await response.json();
+
+      commentsContainer.innerHTML = ''; // Clear existing comments
+
+      comments.forEach((comment) => {
+        const commentElement = document.createElement('div');
+        commentElement.className = 'comment';
+        commentElement.innerHTML = `<span>${comment.userAddress.substring(0, 6)}...${comment.userAddress.substring(comment.userAddress.length - 4)}</span>: ${comment.comment}`;
+        commentsContainer.appendChild(commentElement);
+      });
+    }
+
     // Submit comment
-    submitCommentButton.addEventListener('click', () => {
+    submitCommentButton.addEventListener('click', async () => {
       if (!userAddress) {
         alert('Please connect your wallet first!');
         return;
@@ -266,14 +281,28 @@
 
       const comment = commentText.value.trim();
       if (comment.length > 0) {
-        const commentElement = document.createElement('div');
-        commentElement.className = 'comment';
-        commentElement.innerHTML = `<span>${userAddress.substring(0, 6)}...${userAddress.substring(userAddress.length - 4)}</span>: ${comment}`;
-        
-        commentsContainer.appendChild(commentElement);
-        commentText.value = ''; // Clear the input field
+        const response = await fetch('http://54.183.66.163:5000/comments', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            userAddress: userAddress,
+            comment: comment
+          })
+        });
+
+        if (response.ok) {
+          loadComments(); // Refresh comments list
+          commentText.value = ''; // Clear input
+        } else {
+          alert('Error submitting comment');
+        }
       }
     });
+
+    // Load comments when the page loads
+    loadComments();
   </script>
 </body>
 </html>
