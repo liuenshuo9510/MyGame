@@ -77,6 +77,74 @@
       box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
     }
 
+    .wallet-button {
+      background-color: #0071e3;
+      color: white;
+      padding: 15px 40px;
+      font-size: 1.1em;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .wallet-button:hover {
+      background-color: #005bb5;
+    }
+
+    .comment-section {
+      margin-top: 40px;
+      background: #2d2f34;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    .comment {
+      background: #333;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 6px;
+    }
+
+    .comment span {
+      font-weight: bold;
+      color: #F0B90B;
+    }
+
+    .comment-form {
+      display: flex;
+      flex-direction: column;
+      margin-top: 20px;
+    }
+
+    .comment-form textarea {
+      background: #222;
+      border: 1px solid #444;
+      color: #EAECEF;
+      padding: 10px;
+      font-size: 1em;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+
+    .comment-form button {
+      background-color: #F0B90B;
+      color: #181A20;
+      padding: 10px;
+      font-size: 1.1em;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .comment-form button:hover {
+      background-color: #d9a500;
+    }
+
     @media (max-width: 768px) {
       header h1 {
         font-size: 2.2em;
@@ -90,6 +158,10 @@
       iframe {
         height: 400px;
       }
+
+      .wallet-button {
+        padding: 12px 30px;
+      }
     }
   </style>
 </head>
@@ -101,6 +173,9 @@
     <a href="#play">
       <button class="cta-button">Play Now</button>
     </a>
+    <!-- Web3 Wallet Connect Button -->
+    <button class="wallet-button" id="connectWalletButton">Connect Wallet</button>
+    <p id="walletStatus" style="margin-top: 20px; color: #EAECEF;"></p>
   </header>
 
   <!-- Game Overview -->
@@ -138,5 +213,67 @@
       • A thrilling escape from boring afternoons
     </p>
   </div>
+
+  <!-- Comment Section -->
+  <div class="comment-section">
+    <h2>Game Reviews</h2>
+    <div id="commentsContainer"></div>
+    
+    <div class="comment-form">
+      <textarea id="commentText" placeholder="Leave a comment..." rows="4"></textarea>
+      <button id="submitCommentButton">Submit Comment</button>
+    </div>
+  </div>
+
+  <!-- Web3 Wallet Connection -->
+  <script>
+    const connectButton = document.getElementById('connectWalletButton');
+    const walletStatus = document.getElementById('walletStatus');
+    const submitCommentButton = document.getElementById('submitCommentButton');
+    const commentText = document.getElementById('commentText');
+    const commentsContainer = document.getElementById('commentsContainer');
+    
+    let userAddress = null;
+
+    // Check if window.ethereum is available (MetaMask or other Ethereum wallet)
+    if (window.ethereum) {
+      connectButton.addEventListener('click', async () => {
+        try {
+          // Request wallet connection
+          const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+
+          // Show connected wallet address
+          userAddress = accounts[0];
+          walletStatus.innerHTML = `Connected: ${userAddress.substring(0, 6)}...${userAddress.substring(userAddress.length - 4)}`;
+          walletStatus.style.color = '#F0B90B'; // Gold color for status
+        } catch (error) {
+          // Handle error if wallet connection fails
+          walletStatus.innerHTML = 'Connection failed. Please try again.';
+          walletStatus.style.color = 'red';
+        }
+      });
+    } else {
+      walletStatus.innerHTML = 'Please install MetaMask to connect your wallet.';
+      walletStatus.style.color = 'red';
+    }
+
+    // Submit comment
+    submitCommentButton.addEventListener('click', () => {
+      if (!userAddress) {
+        alert('Please connect your wallet first!');
+        return;
+      }
+
+      const comment = commentText.value.trim();
+      if (comment.length > 0) {
+        const commentElement = document.createElement('div');
+        commentElement.className = 'comment';
+        commentElement.innerHTML = `<span>${userAddress.substring(0, 6)}...${userAddress.substring(userAddress.length - 4)}</span>: ${comment}`;
+        
+        commentsContainer.appendChild(commentElement);
+        commentText.value = ''; // Clear the input field
+      }
+    });
+  </script>
 </body>
 </html>
